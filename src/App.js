@@ -1,23 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import Topbar from './Topbar';
+import { useState } from 'react';
 
 function App() {
+  const [busqueda, setBusqueda] = useState("");
+  
+  function actualizarBusqueda(e) {
+    if(e.keycode == 13) { //enter
+      return;
+    }
+    setBusqueda(e.target.value)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Topbar busqueda={busqueda} actualizarBusqueda={actualizarBusqueda}/>
+      <div>
+        <h>lol</h>
+      </div>
     </div>
   );
 }
