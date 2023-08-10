@@ -31,8 +31,8 @@ function App() {
 
   return (
     <>
-      <Topbar busqueda={busqueda} actualizarBusqueda={actualizarBusqueda}/>
       <BrowserRouter>
+        <Topbar busqueda={busqueda} actualizarBusqueda={actualizarBusqueda}/>
         <Routes>
           <Route path="/home" element={<Home productos={productos}/>}></Route>
           <Route path="/productos" element={<div>lmao</div>}></Route>

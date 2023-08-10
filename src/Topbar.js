@@ -6,8 +6,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Topbar({busqueda, actualizarBusqueda}) {
+    const navigate = useNavigate();
+
     const [categorias, setCategorias] = useState([""]);
 
     const fetchCategorias = async () => {
@@ -37,8 +40,8 @@ function Topbar({busqueda, actualizarBusqueda}) {
                 onChange={actualizarBusqueda}
                 />
             </Form>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              {categorias.map((categoria) => (<NavDropdown.Item>{categoria}</NavDropdown.Item>))}
+            <NavDropdown title="Categorias" id="navbarScrollingDropdown">
+              {categorias.map((categoria) => (<NavDropdown.Item onClick={() => navigate("/productos", {state:{categoria:categoria}})}>{categoria}</NavDropdown.Item>))}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
