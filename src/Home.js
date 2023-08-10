@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Card, Col, Row } from "react-bootstrap";
+import { Card, Col, Container, Row, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+import Carousel from 'react-bootstrap/Carousel';
 
 function Home({ productos }) {
     const navigate = useNavigate();
@@ -26,6 +26,16 @@ function Home({ productos }) {
         listaProdsAMostrar.push(rand);
     }
     return (
+        <Container>
+        <Carousel>
+        <Carousel.Item style={{width: "100%",height: "100vh"}}>
+          <Image src="https://cdn.ethic.es/wp-content/uploads/2023/03/imagen.jpg"/>
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        </Carousel>
         <Row xs={1} md={3} className="g-4">
             {
                 listaProdsAMostrar.map((element, idx) => (
@@ -40,6 +50,7 @@ function Home({ productos }) {
                 ))
             }
         </Row>
+        </Container>
     );
 }
 
