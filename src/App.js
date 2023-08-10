@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import Topbar from './Topbar';
+import Home from './Home';
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
 
 function App() {
@@ -30,16 +31,17 @@ function App() {
 
   return (
     <>
-    <Topbar busqueda={busqueda} actualizarBusqueda={actualizarBusqueda}/>
+      <Topbar busqueda={busqueda} actualizarBusqueda={actualizarBusqueda}/>
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<div>lol</div>}></Route>
+          <Route path="/home" element={<Home productos={productos}/>}></Route>
           <Route path="/productos" element={<div>lmao</div>}></Route>
           <Route path="/detalle" element={<div>noway</div>}></Route>
-          <Route path="/contacto" element={<div>nomellamen</div>}></Route>  
+          <Route path="/contacto" element={<div>nomellamen</div>}></Route>
+          <Route path="*" element={<Navigate to="/home" replace/>}/>
         </Routes>
       </BrowserRouter>
-      </>
+    </>
   );
 }
 
