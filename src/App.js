@@ -5,6 +5,7 @@ import Home from './Home';
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
+import Contacto from './Contacto';
 
 function App() {
   const [busqueda, setBusqueda] = useState("");
@@ -37,7 +38,7 @@ function App() {
           <Route path="/home" element={<Home productos={productos}/>}></Route>
           <Route path="/productos" element={<div>lmao</div>}></Route>
           <Route path="/detalle" element={<div>noway</div>}></Route>
-          <Route path="/contacto" element={<div>nomellamen</div>}></Route>
+          <Route path="/contacto" element={<Contacto/>}></Route>
           <Route path="*" element={<Navigate to="/home" replace/>}/>
         </Routes>
       </BrowserRouter>
