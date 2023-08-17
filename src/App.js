@@ -2,7 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import Topbar from './Topbar';
 import Home from './Home';
-import Productos from './Productos'
+import Productos from './Productos';
+import DetalleProducto from './detalleProducto';
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -19,11 +20,7 @@ function App() {
 
   useEffect(() => {
     fetchProductos();
-  }, [])
-
-  useEffect(() => {
-    console.log(productos);
-  }, [productos]);
+  }, []);
 
   function actualizarBusqueda(e) {
     if(e.keycode == 13) { //enter
@@ -41,7 +38,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home productos={productos}/>}></Route>
           <Route path="/productos" element={<Productos productos={productos}/>}></Route>
-          <Route path="/detalle" element={<div>noway</div>}></Route>
+          <Route path="/detalle" element={<DetalleProducto/>}></Route>
           <Route path="/contacto" element={<Contacto/>}></Route>
           <Route path="*" element={<Navigate to="/home" replace/>}/>
         </Routes>
