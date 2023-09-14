@@ -2,9 +2,9 @@ import { createContext, useState, useEffect } from 'react'
 
 export const CarroContext = createContext()
 
-const [cartItems, setCartItems] = useState([])
+//const [cartItems, setCartItems] = useState([])
 
- const addToCart = (item) => {
+ /*const addToCart = (item) => {
   const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id); // check if the item is already in the cart
 
   if (isItemInCart) {
@@ -42,4 +42,4 @@ const clearCart = () => {
 
 const getCartTotal = () => {
   return cartItems.reduce((total, item) => total + item.price * item.quantity, 0); // calculate the total price of the items in the cart
-};
+};*/
