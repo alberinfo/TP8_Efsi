@@ -15,7 +15,6 @@ function App() {
   const [productos, setProductos] = useState([]);
   const [carrito, setCarrito] = useState([]);
 
-
   const fetchProductos = async () => {
     const resp = await axios.get("https://dummyjson.com/products?limit=150");
     setProductos([...resp.data.products]);
@@ -36,23 +35,21 @@ function App() {
 
   if(typeof carrito === "undefined") return (<></>);
 
-  const addToCart = (item) => {
-    console.log("BIG LMAO", item);
-    const isItemInCart = carrito.find((cartItem) => cartItem.id === item.id); // check if the item is already in the cart
-    console.log(isItemInCart);
+  const addToCart = (item, amount) => {
+    const isItemInCart = typeof carrito.find((cartItem) => cartItem.id === item.id) !== "undefined"; // check if the item is already in the cart
+    console.log(carrito);
 
     if (isItemInCart) {
     setCarrito(
       carrito.map((elemento) => // if the item is already in the cart, increase the quantity of the item
-      carrito.id === item.id
-            ? { ...elemento, quantity: elemento.quantity + 1 }
+      elemento.id === item.id
+            ? { ...elemento, quantity: elemento.quantity + amount }
             : elemento // otherwise, return the cart item
         )
     );
     } else {
-      setCarrito([...carrito, { ...item, quantity: 1 }]); // if the item is not in the cart, add the item to the cart
+      setCarrito([...carrito, { ...item, quantity: amount }]); // if the item is not in the cart, add the item to the cart
     }
-    console.log(carrito);
   }
   
   const removeFromCart = (item) => {

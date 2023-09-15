@@ -7,6 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function Topbar({busqueda, actualizarBusqueda}) {
     const navigate = useNavigate();
@@ -49,6 +50,11 @@ function Topbar({busqueda, actualizarBusqueda}) {
       </Container>
     </Navbar>
     );
+}
+
+Topbar.propTypes = {
+  busqueda: PropTypes.string,
+  actualizarBusqueda: PropTypes.func.isRequired
 }
 
 export default Topbar;

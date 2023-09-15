@@ -1,5 +1,6 @@
 import { Card, Col, Row } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 function Productos({productos}) {
     const navigate = useNavigate();
@@ -32,6 +33,10 @@ function Productos({productos}) {
             ))
         }
     </Row>);
+}
+
+Productos.propTypes = {
+    prodcutos: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default Productos;

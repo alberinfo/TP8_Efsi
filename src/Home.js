@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Card, Col, Container, Row, Image } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Carousel from 'react-bootstrap/Carousel';
+import PropTypes from 'prop-types';
 
 function Home({ productos }) {
     const navigate = useNavigate();
@@ -43,6 +44,10 @@ function Home({ productos }) {
         </Row>
         </Container>
     );
+}
+
+Home.propTypes = {
+    productos: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default Home;
