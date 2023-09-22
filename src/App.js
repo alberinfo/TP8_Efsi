@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-route
 import axios from 'axios';
 import Contacto from './Contacto';
 import { CarroContext } from './context/CarroContext';
+import Carrito from './carrito';
 
 function App() {
   const [busqueda, setBusqueda] = useState("");
@@ -66,8 +67,13 @@ function App() {
         )
       );
     }
+
   }
-  
+
+  const fullyRemoveFromCart = (item) => {
+    setCarrito(carrito.filter(elemento => elemento.id !== item.id));
+  }
+
   const clearCart = () => {
     setCarrito([]); // set the cart items to an empty array
   }
@@ -79,13 +85,14 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <CarroContext.Provider value={{carrito, addToCart, removeFromCart, clearCart, getCartTotal}}>
+        <CarroContext.Provider value={{carrito, addToCart, removeFromCart, fullyRemoveFromCart, clearCart, getCartTotal}}>
           <Topbar busqueda={busqueda} actualizarBusqueda={actualizarBusqueda}/>
           <Routes>
             <Route path="/home" element={<Home productos={productos}/>}></Route>
             <Route path="/productos" element={<Productos productos={productos}/>}></Route>
             <Route path="/detalle" element={<DetalleProducto/>}></Route>
             <Route path="/contacto" element={<Contacto/>}></Route>
+            <Route path="/carrito" element={<Carrito/>}></Route>
             <Route path="*" element={<Navigate to="/home" replace/>}/>
           </Routes>
         </CarroContext.Provider>

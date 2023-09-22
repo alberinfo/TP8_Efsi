@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function Topbar({busqueda, actualizarBusqueda}) {
     const navigate = useNavigate();
@@ -17,7 +18,6 @@ function Topbar({busqueda, actualizarBusqueda}) {
     const fetchCategorias = async () => {
         const resp = await axios.get("https://dummyjson.com/products/categories");
         setCategorias(resp.data);
-        console.log(resp);
     }
 
     useEffect(() => {
@@ -27,7 +27,7 @@ function Topbar({busqueda, actualizarBusqueda}) {
     return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="/">Bazar chino</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">Bazar chino</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
@@ -45,6 +45,9 @@ function Topbar({busqueda, actualizarBusqueda}) {
               <NavDropdown.Item onClick={() => navigate("/productos")}>Todos los productos</NavDropdown.Item>
               {categorias.map((categoria) => (<NavDropdown.Item onClick={() => navigate("/productos", {state:{categoria:categoria}})}>{categoria}</NavDropdown.Item>))}
             </NavDropdown>
+            <Nav.Link onClick={() => navigate("/carrito")}>
+              Carrito
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

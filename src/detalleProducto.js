@@ -5,7 +5,7 @@ import { CarroContext } from "./context/CarroContext";
 import { useContext, useEffect, useState } from "react";
 
 function DetalleProducto() {
-    const [cantidadAAgregar, setCantidadAAgregar] = useState();
+    const [cantidadAAgregar, setCantidadAAgregar] = useState(1);
 
     useEffect(() => {
         console.log("CANTAAG", cantidadAAgregar);
