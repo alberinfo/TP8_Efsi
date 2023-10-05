@@ -16,6 +16,17 @@ function App() {
   const [productos, setProductos] = useState([]);
   const [carrito, setCarrito] = useState([]);
 
+  useEffect(() => {
+    if(carrito.length === 0) return;
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  }, [carrito]);
+
+  useEffect(() => {
+    if(localStorage.getItem("carrito") !== null) {
+      setCarrito(JSON.parse(localStorage.getItem("carrito")));
+    }
+  }, [])
+
   const fetchProductos = async () => {
     const resp = await axios.get("https://dummyjson.com/products?limit=150");
     setProductos([...resp.data.products]);
